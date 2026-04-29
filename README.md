@@ -15,7 +15,8 @@ A clean, simple, and fully functional **Bookmark Saver** web application that al
 
 ## 📸 Preview
 
-![alt text](image.png)
+<img width="947" height="377" alt="image" src="https://github.com/user-attachments/assets/abdc755a-d88f-4174-9e2b-98205c31414e" />
+
 
 > **Live URL:** [https://bookmark-saver-12.netlify.app/](https://bookmark-saver-12.netlify.app/)
 
