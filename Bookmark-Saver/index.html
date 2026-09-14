@@ -1,23 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookmark Saver</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="app-container">
-      <h1>Bookmark Saver app</h1>
-      <div class="input-container">
-        <input type="text" id="bookmark-name" placeholder="Bookmark Name" />
-        <input type="url" id="bookmark-url" placeholder="Bookmark URL" />
-        <button id="add-bookmark">Add Bookmark</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium, lightweight bookmark manager built with HTML, CSS and Vanilla JavaScript.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Markly — Bookmark Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="mobile-backdrop" id="mobile-backdrop" aria-hidden="true"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 4.75A2.75 2.75 0 0 1 9.75 2h7.5A2.75 2.75 0 0 1 20 4.75v14.5a1.75 1.75 0 0 1-2.86 1.36L13.5 17.6l-3.64 3.01A1.75 1.75 0 0 1 7 19.25V4.75Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M10 6.75h5.5M10 10.25h5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">Markly</span>
+          <span class="brand-subtitle">Bookmark workspace</span>
+        </div>
+        <button class="icon-btn sidebar-close" id="sidebar-close" aria-label="Close navigation">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
       </div>
 
-      <ul id="bookmark-list"></ul>
-    </div>
+      <nav class="sidebar-nav" aria-label="Primary navigation">
+        <span class="nav-label">Workspace</span>
+        <button class="nav-item active" data-view="overview">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 13.5V19a1 1 0 0 0 1 1h5v-6h4v6h5a1 1 0 0 0 1-1v-5.5M3 11l9-8 9 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Overview</span>
+        </button>
+        <button class="nav-item" data-view="all">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 9h8M8 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>All Bookmarks</span>
+          <span class="nav-count" id="all-count">0</span>
+        </button>
+        <button class="nav-item" data-view="favorites">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m12 3.8 2.55 5.17 5.7.83-4.13 4.02.98 5.68L12 16.82l-5.1 2.68.98-5.68L3.75 9.8l5.7-.83L12 3.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span>Favorites</span>
+          <span class="nav-count" id="favorite-count">0</span>
+        </button>
+        <button class="nav-item" data-view="recent">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>Recently Added</span>
+        </button>
 
-    <script src="script.js"></script>
-  </body>
+        <span class="nav-label collection-label">Collections</span>
+        <div id="category-nav"></div>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="storage-card">
+          <div class="storage-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 17.5v-11Z" stroke="currentColor" stroke-width="1.7"/><path d="M8 8h8M8 12h8M8 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <strong>Local storage</strong>
+            <span id="storage-status">Your data stays on this device.</span>
+          </div>
+        </div>
+        <button class="nav-item" id="settings-btn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 15.25a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" stroke="currentColor" stroke-width="1.8"/><path d="m19.4 15 .08.08a1.6 1.6 0 0 1-2.26 2.26l-.08-.08a1.6 1.6 0 0 0-2.73 1.13v.23a1.6 1.6 0 0 1-3.2 0v-.23a1.6 1.6 0 0 0-2.73-1.13l-.08.08a1.6 1.6 0 1 1-2.26-2.26l.08-.08A1.6 1.6 0 0 0 5.09 12H4.86a1.6 1.6 0 0 1 0-3.2h.23a1.6 1.6 0 0 0 1.13-2.73l-.08-.08A1.6 1.6 0 1 1 8.4 3.73l.08.08A1.6 1.6 0 0 0 11.2 2.68v-.23a1.6 1.6 0 0 1 3.2 0v.23a1.6 1.6 0 0 0 2.73 1.13l.08-.08a1.6 1.6 0 1 1 2.26 2.26l-.08.08A1.6 1.6 0 0 0 20.52 8.8h.23a1.6 1.6 0 0 1 0 3.2h-.23A1.6 1.6 0 0 0 19.4 15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Settings</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="mobile-menu" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+
+        <div class="topbar-search">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <input id="search-input" type="search" placeholder="Search bookmarks..." autocomplete="off" aria-label="Search bookmarks">
+          <kbd>Ctrl K</kbd>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none"><path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8 8.4 8.4 0 1 0 20.2 15.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="avatar" id="avatar-btn" aria-label="Open settings">RZ</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <div class="page-header">
+          <div>
+            <div class="eyebrow"><span class="status-dot"></span> Your private bookmark space</div>
+            <h1 id="page-title">Good morning <span aria-hidden="true">👋</span></h1>
+            <p id="page-subtitle">Keep your favorite resources organized and easy to access.</p>
+          </div>
+          <button class="primary-btn" id="add-bookmark-btn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add Bookmark
+          </button>
+        </div>
+
+        <section class="stats-grid" aria-label="Bookmark statistics">
+          <article class="stat-card">
+            <div class="stat-icon indigo">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 4.75A2.75 2.75 0 0 1 9.75 2h7.5A2.75 2.75 0 0 1 20 4.75v14.5a1.75 1.75 0 0 1-2.86 1.36L13.5 17.6l-3.64 3.01A1.75 1.75 0 0 1 7 19.25V4.75Z" stroke="currentColor" stroke-width="1.7"/></svg>
+            </div>
+            <div><span>Total Bookmarks</span><strong id="stat-total">0</strong></div>
+            <span class="stat-note">saved locally</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon amber">
+              <svg viewBox="0 0 24 24" fill="none"><path d="m12 3.8 2.55 5.17 5.7.83-4.13 4.02.98 5.68L12 16.82l-5.1 2.68.98-5.68L3.75 9.8l5.7-.83L12 3.8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </div>
+            <div><span>Favorites</span><strong id="stat-favorites">0</strong></div>
+            <span class="stat-note">your top links</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon emerald">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </div>
+            <div><span>Collections</span><strong id="stat-categories">0</strong></div>
+            <span class="stat-note">active categories</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon violet">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-3-7 3V5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </div>
+            <div><span>Recent</span><strong id="stat-recent">0</strong></div>
+            <span class="stat-note">added this week</span>
+          </article>
+        </section>
+
+        <section class="quick-add">
+          <div class="quick-add-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="quick-add-copy">
+            <strong>Save a new bookmark</strong>
+            <span>Add a useful link in seconds.</span>
+          </div>
+          <button class="secondary-btn" id="quick-add-btn">Add Link</button>
+        </section>
+
+        <section class="bookmark-section">
+          <div class="section-toolbar">
+            <div>
+              <h2 id="list-title">Your Bookmarks</h2>
+              <p id="list-description">Everything you've saved in one place.</p>
+            </div>
+            <div class="toolbar-actions">
+              <label class="sort-select">
+                <span class="sr-only">Sort bookmarks</span>
+                <select id="sort-select">
+                  <option value="newest">Recently Added</option>
+                  <option value="oldest">Oldest</option>
+                  <option value="az">A → Z</option>
+                  <option value="za">Z → A</option>
+                  <option value="favorites">Favorites First</option>
+                </select>
+              </label>
+              <div class="view-toggle" role="group" aria-label="Bookmark view">
+                <button class="view-btn active" data-view-mode="grid" aria-label="Grid view">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+                <button class="view-btn" data-view-mode="list" aria-label="List view">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="active-filters" class="active-filters" hidden></div>
+          <div id="bookmark-list" class="bookmark-grid"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div class="modal-backdrop" id="bookmark-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">Bookmark details</span>
+          <h2 id="modal-title">Add New Bookmark</h2>
+        </div>
+        <button class="icon-btn modal-close" id="modal-close" aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <form id="bookmark-form">
+        <input type="hidden" id="bookmark-id">
+        <div class="form-group">
+          <label for="bookmark-name">Title <span>*</span></label>
+          <input id="bookmark-name" type="text" maxlength="120" placeholder="e.g. GitHub" required>
+        </div>
+        <div class="form-group">
+          <label for="bookmark-url">URL <span>*</span></label>
+          <div class="url-input-wrap">
+            <span>https://</span>
+            <input id="bookmark-url" type="text" inputmode="url" placeholder="example.com" required>
+          </div>
+          <small>Paste a full URL or enter a domain like github.com.</small>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bookmark-category">Category</label>
+            <select id="bookmark-category">
+              <option value="">No category</option>
+              <option>Development</option>
+              <option>Design</option>
+              <option>Learning</option>
+              <option>Work</option>
+              <option>Entertainment</option>
+              <option>Social</option>
+              <option>Tools</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="bookmark-tags">Tags</label>
+            <input id="bookmark-tags" type="text" maxlength="160" placeholder="coding, useful, reference">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bookmark-notes">Notes <span class="optional">Optional</span></label>
+          <textarea id="bookmark-notes" maxlength="500" rows="3" placeholder="Add a short note about this bookmark..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="secondary-btn" id="modal-cancel">Cancel</button>
+          <button type="submit" class="primary-btn" id="modal-submit">Save Bookmark</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation -->
+  <div class="modal-backdrop" id="confirm-modal" hidden>
+    <div class="modal confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="confirm-icon danger">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12M9 8V5h6v3M8 8l.7 11h6.6L16 8M10 11v5M14 11v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 id="confirm-title">Delete Bookmark?</h2>
+      <p id="confirm-text">This bookmark will be removed from your local collection.</p>
+      <div class="modal-footer centered">
+        <button class="secondary-btn" id="confirm-cancel">Cancel</button>
+        <button class="danger-btn" id="confirm-delete">Delete Bookmark</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-backdrop" id="settings-modal" hidden>
+    <div class="modal settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">Preferences & data</span>
+          <h2 id="settings-title">Settings</h2>
+        </div>
+        <button class="icon-btn modal-close" data-close-modal="settings-modal" aria-label="Close settings">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="settings-list">
+        <div class="settings-row">
+          <div class="settings-row-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div><strong>Appearance</strong><span>Switch between light and dark mode.</span></div>
+          <button class="secondary-btn compact" id="settings-theme-btn">Toggle theme</button>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><strong>Export bookmarks</strong><span>Download your bookmark data as a JSON backup.</span></div>
+          <button class="secondary-btn compact" id="export-btn">Export JSON</button>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12M8 7l4-4 4 4M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><strong>Import bookmarks</strong><span>Restore bookmarks from a Markly JSON backup.</span></div>
+          <button class="secondary-btn compact" id="import-btn">Import JSON</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden>
+        </div>
+
+        <div class="settings-row destructive-row">
+          <div class="settings-row-icon danger-soft">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12M9 8V5h6v3M8 8l.7 11h6.6L16 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><strong>Clear all data</strong><span>Remove every bookmark stored on this device.</span></div>
+          <button class="danger-btn compact" id="clear-all-btn">Clear All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <template id="bookmark-template">
+    <article class="bookmark-card">
+      <div class="bookmark-card-top">
+        <div class="site-icon">
+          <img alt="" loading="lazy">
+          <span class="fallback-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.07.07l2-2A5 5 0 0 0 12 4l-1.15 1.15M14 11a5 5 0 0 0-7.07-.07l-2 2A5 5 0 0 0 12 20l1.15-1.15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <div class="bookmark-menu-wrap">
+          <button class="favorite-btn" aria-label="Toggle favorite">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m12 3.8 2.55 5.17 5.7.83-4.13 4.02.98 5.68L12 16.82l-5.1 2.68.98-5.68L3.75 9.8l5.7-.83L12 3.8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="more-btn" aria-label="More actions" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="19" cy="12" r="1.4" fill="currentColor"/></svg>
+          </button>
+          <div class="context-menu">
+            <button data-action="open"><span>↗</span> Open</button>
+            <button data-action="copy"><span>⧉</span> Copy Link</button>
+            <button data-action="edit"><span>✎</span> Edit</button>
+            <button data-action="favorite"><span>☆</span> Favorite</button>
+            <button data-action="delete" class="danger-item"><span>⌫</span> Delete</button>
+          </div>
+        </div>
+      </div>
+      <a class="bookmark-title" target="_blank" rel="noopener noreferrer"></a>
+      <p class="bookmark-domain"></p>
+      <p class="bookmark-notes"></p>
+      <div class="bookmark-meta">
+        <span class="category-pill"></span>
+        <div class="tag-list"></div>
+        <span class="bookmark-date"></span>
+      </div>
+      <div class="bookmark-actions">
+        <a class="open-link" target="_blank" rel="noopener noreferrer">Open <span>↗</span></a>
+        <button class="card-edit">Edit</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
 </html>
