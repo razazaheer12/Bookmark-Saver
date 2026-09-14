@@ -1,6 +1,8 @@
 # 🔖 Bookmark Saver
 
-A clean, simple, and fully functional **Bookmark Saver** web application that allows you to save and organize your favorite website links. Add bookmarks with custom names, open them instantly, and manage your list effortlessly — all stored locally in your browser.
+A modern, lightweight, and fully responsive **Bookmark Saver** web application that helps you save, organize, search, and manage your favorite website links effortlessly.
+
+Built entirely with **HTML5, CSS3, and Vanilla JavaScript**, Bookmark Saver provides a polished, premium-style user experience while keeping the application fast, simple, and dependency-free.
 
 <p align="center">
   <a href="https://bookmark-saver-12.netlify.app/" target="_blank">
@@ -15,8 +17,11 @@ A clean, simple, and fully functional **Bookmark Saver** web application that al
 
 ## 📸 Preview
 
-<img width="947" height="377" alt="image" src="https://github.com/user-attachments/assets/abdc755a-d88f-4174-9e2b-98205c31414e" />
+> 🚀 A redesigned premium bookmark management experience with a modern dashboard, responsive layout, search, favorites, categories, and local data persistence.
 
+<!-- Add your latest screenshot here -->
+
+<img width="947" height="377" alt="Bookmark Saver Preview" src="https://github.com/user-attachments/assets/abdc755a-d88f-4174-9e2b-98205c31414e" />
 
 > **Live URL:** [https://bookmark-saver-12.netlify.app/](https://bookmark-saver-12.netlify.app/)
 
@@ -26,14 +31,31 @@ A clean, simple, and fully functional **Bookmark Saver** web application that al
 
 | Feature | Description |
 |---------|-------------|
-| ➕ **Add Bookmarks** | Save any website with a custom name and URL. |
-| 🔗 **Quick Access** | Click any bookmark to open it in a new tab. |
-| 🗑️ **Remove Bookmarks** | Delete unwanted bookmarks with a single click. |
-| 💾 **Local Storage** | All bookmarks persist in your browser — no account needed. |
-| 🔒 **URL Validation** | Automatically validates that URLs start with http:// or https://. |
-| ✅ **Input Validation** | Ensures both name and URL fields are filled before saving. |
-| 📱 **Responsive Design** | Works smoothly on desktop and mobile devices. |
-| 🎨 **Clean UI** | Simple, modern interface with green accent colors. |
+| ➕ **Add Bookmarks** | Save websites with a custom title and URL. |
+| ✏️ **Edit Bookmarks** | Update bookmark details whenever needed. |
+| 🗑️ **Delete Bookmarks** | Remove unwanted bookmarks easily with confirmation. |
+| ↩️ **Undo Delete** | Restore a recently deleted bookmark without re-adding it manually. |
+| 🔗 **Quick Access** | Open saved websites instantly in a new browser tab. |
+| 📋 **Copy URL** | Copy any bookmark URL directly to the clipboard. |
+| ⭐ **Favorites** | Mark important bookmarks as favorites for quick access. |
+| 📁 **Categories** | Organize bookmarks into custom collections. |
+| 🏷️ **Tags** | Add tags to make bookmarks easier to identify and search. |
+| 📝 **Notes** | Add optional notes to provide additional context for bookmarks. |
+| 🔎 **Instant Search** | Search bookmarks by title, URL, domain, category, tags, or notes. |
+| ↕️ **Smart Sorting** | Sort bookmarks by newest, oldest, A–Z, Z–A, or favorites first. |
+| ▦ **Grid View** | Browse bookmarks using a clean responsive card layout. |
+| ☰ **List View** | Switch to a compact list layout when preferred. |
+| 🌐 **Website Favicons** | Display website icons automatically when available. |
+| 🌓 **Dark & Light Mode** | Switch between modern light and dark themes. |
+| 🔔 **Toast Notifications** | Get instant visual feedback for important actions. |
+| 💾 **Local Storage** | Persist bookmarks directly inside the browser. |
+| 📤 **JSON Export** | Back up your bookmarks as a JSON file. |
+| 📥 **JSON Import** | Restore bookmarks from a previously exported JSON file. |
+| 🧹 **Clear All Data** | Remove all locally stored bookmark data when required. |
+| ⌨️ **Keyboard Shortcuts** | Quickly access search and bookmark creation using keyboard shortcuts. |
+| 📱 **Fully Responsive** | Designed for mobile, tablet, laptop, desktop, and large screens. |
+| ⚡ **Lightweight** | No frontend framework or large dependency required. |
+| 🔒 **Privacy Friendly** | No account or backend database is required. |
 
 ---
 
@@ -46,10 +68,45 @@ A clean, simple, and fully functional **Bookmark Saver** web application that al
   <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Netlify" />
 </p>
 
-- **HTML5** — Semantic structure with form inputs
-- **CSS3** — Clean styling with Flexbox and hover effects
-- **Vanilla JavaScript** — Pure DOM manipulation, URL validation, and localStorage API
-- **Netlify** — Reliable static site hosting
+- **HTML5** — Semantic application structure and accessible markup
+- **CSS3** — Responsive layouts, themes, animations, cards, modals, and visual styling
+- **Vanilla JavaScript** — DOM manipulation, application state, validation, search, sorting, and interactions
+- **LocalStorage API** — Persistent client-side bookmark storage
+- **Clipboard API** — Copy bookmark URLs directly to the clipboard
+- **File API** — Import and export bookmark backups
+- **SVG Icons** — Lightweight interface icons without a heavy icon library
+- **Google Fonts** — Inter typography for a modern UI
+- **Netlify** — Static deployment and hosting
+
+---
+
+## 🚫 No Frameworks
+
+This project intentionally uses only the fundamentals of web development.
+
+```text
+HTML5
+CSS3
+Vanilla JavaScript
+Browser APIs
+```
+
+No:
+
+```text
+React
+Next.js
+Vue
+Angular
+Tailwind CSS
+Bootstrap
+Node.js
+Express
+MongoDB
+Firebase
+```
+
+The goal is to demonstrate how far a polished web application can be taken using **HTML, CSS, and JavaScript alone**.
 
 ---
 
@@ -57,7 +114,18 @@ A clean, simple, and fully functional **Bookmark Saver** web application that al
 
 ### Prerequisites
 
-You only need a modern web browser to run this project locally. No build tools or dependencies required!
+You only need a modern web browser to run this project.
+
+No:
+
+- Build tools
+- Package manager
+- Node.js
+- Framework
+- Database
+- Backend server
+
+are required.
 
 ### Installation
 
@@ -73,39 +141,308 @@ You only need a modern web browser to run this project locally. No build tools o
    cd Bookmark-Saver
    ```
 
-3. **Open in browser**
+3. **Open the project**
 
-   Simply open the `index.html` file in your favorite browser:
+   Open `index.html` directly in your browser.
 
-   ```bash
-   # On Windows
-   start index.html
-
-   # On macOS
-   open index.html
-
-   # On Linux
-   xdg-open index.html
-   ```
+   Or use **Live Server** in VS Code for development.
 
 ---
 
 ## 📖 How to Use
 
-1. **Add a Bookmark** — Enter a name (e.g., "Google") and a URL (e.g., "https://google.com"), then click **Add Bookmark**.
-2. **Open a Bookmark** — Click any saved bookmark link to open it in a new tab.
-3. **Remove a Bookmark** — Click the "Remove" button next to any bookmark to delete it.
-4. **Persistent Data** — Your bookmarks are saved automatically. Close and reopen the browser — your links will still be there!
+### ➕ Add a Bookmark
+
+Enter the following information:
+
+- Bookmark title
+- Website URL
+- Optional category
+- Optional tags
+- Optional notes
+- Favorite status if required
+
+Then save the bookmark.
+
+### 🔗 Open a Bookmark
+
+Click the bookmark's **Open** action to launch the website in a new browser tab.
+
+### ⭐ Favorite a Bookmark
+
+Use the favorite action to mark important websites for faster access.
+
+### ✏️ Edit a Bookmark
+
+Open the bookmark's edit action, update its information, and save the changes.
+
+### 🗑️ Delete a Bookmark
+
+Use the delete action to remove a bookmark.
+
+The application provides confirmation before permanent removal and supports undoing a recent deletion.
+
+### 🔎 Search
+
+Use the search field to instantly filter bookmarks.
+
+Search can match:
+
+```text
+Title
+URL
+Domain
+Category
+Tags
+Notes
+```
+
+### ↕️ Sort
+
+Bookmarks can be sorted using options such as:
+
+```text
+Newest
+Oldest
+A → Z
+Z → A
+Favorites First
+```
+
+### 🌓 Change Theme
+
+Use the theme toggle to switch between:
+
+```text
+Light Mode
+Dark Mode
+```
+
+Your selected preference is stored locally.
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl + K` | Focus bookmark search |
+| `Ctrl + N` | Open Add Bookmark modal |
+| `Escape` | Close active modal or navigation |
+
+---
+
+## 💾 Data Storage
+
+Bookmark Saver uses the browser's **LocalStorage API** to persist data.
+
+Your bookmarks remain available after:
+
+- Refreshing the page
+- Closing the browser
+- Reopening the application
+
+No account is required.
+
+### Example Bookmark Object
+
+```javascript
+{
+  id: "unique-id",
+  title: "Google",
+  url: "https://google.com",
+  category: "General",
+  tags: ["search", "web"],
+  notes: "My favorite search engine",
+  favorite: false,
+  createdAt: 1720000000000,
+  updatedAt: 1720000000000
+}
+```
+
+The application also supports the original simple bookmark structure:
+
+```javascript
+{
+  name: "Google",
+  url: "https://google.com"
+}
+```
+
+This helps maintain compatibility with bookmarks created by the original version.
+
+---
+
+## 📤 Export & Import
+
+### Export
+
+You can export your bookmark collection as a JSON backup file.
+
+Example:
+
+```text
+markly-bookmarks-2026-09-15.json
+```
+
+### Import
+
+Previously exported bookmark files can be imported back into the application.
+
+The application validates imported data before adding it to the bookmark collection.
+
+---
+
+## 🔒 Privacy
+
+Bookmark Saver is a client-side application.
+
+There is:
+
+```text
+No Backend
+No Database
+No Authentication
+No User Account
+No Server-side Bookmark Storage
+```
+
+Your bookmarks are stored locally in your browser.
+
+> ⚠️ Clearing browser storage may remove locally saved bookmarks. It is recommended to periodically use the **Export** feature to create a backup.
+
+---
+
+## 📱 Responsive Design
+
+Bookmark Saver is designed to provide a consistent experience across different screen sizes.
+
+### 📱 Mobile
+
+Optimized for:
+
+- Small smartphones
+- iPhone SE-class screens
+- iPhone XR-class screens
+- Android phones
+- Older mobile devices
+
+The interface adapts by:
+
+- Collapsing navigation
+- Stacking content vertically
+- Wrapping controls
+- Making buttons touch-friendly
+- Preventing horizontal overflow
+- Adapting cards to smaller widths
+
+### 📲 Tablet
+
+The layout automatically adjusts:
+
+- Sidebar behavior
+- Card columns
+- Toolbar controls
+- Search width
+- Modal dimensions
+
+### 💻 Desktop
+
+Larger screens receive:
+
+- Full sidebar navigation
+- Spacious dashboard layout
+- Multi-column bookmark grid
+- Expanded toolbar controls
+- Better use of available screen space
+
+---
+
+## 🎨 Design System
+
+The redesigned interface follows a modern **premium SaaS / productivity dashboard** design direction.
+
+### Typography
+
+The application uses:
+
+**Inter**
+
+Chosen for:
+
+- Excellent readability
+- Clean appearance
+- Modern SaaS aesthetic
+- Strong UI hierarchy
+- Good mobile readability
+
+### Design Principles
+
+The interface focuses on:
+
+- Clean visual hierarchy
+- Spacious layouts
+- Soft borders
+- Subtle shadows
+- Rounded surfaces
+- Minimal visual noise
+- Smooth micro-interactions
+- Consistent spacing
+- Touch-friendly controls
+- Responsive behavior
+
+### Theme
+
+The visual system uses an indigo/violet-inspired primary palette with neutral surfaces and dedicated dark-mode colors.
+
+---
+
+## ♿ Accessibility
+
+Accessibility has been considered throughout the interface.
+
+Features include:
+
+- Semantic HTML
+- Accessible buttons
+- ARIA labels where required
+- Keyboard navigation
+- Visible focus states
+- Reduced-motion support
+- Accessible forms
+- Responsive text
+- Touch-friendly controls
+- Modal interaction handling
+
+---
+
+## ⚡ Performance
+
+Bookmark Saver is intentionally lightweight.
+
+Performance-focused decisions include:
+
+- No frontend framework
+- No heavy component library
+- Minimal dependencies
+- Browser-native APIs
+- Inline SVG icons
+- CSS-based animations
+- Efficient DOM updates
+- Client-side storage
+- Static hosting compatibility
+
+This makes the application suitable for lightweight deployment through services such as **Netlify** or **GitHub Pages**.
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 Bookmark-Saver/
 │
-├── index.html          # Main HTML structure
-├── style.css           # All styles and responsive design
+├── index.html          # Main HTML structure and application layout
+├── style.css           # Complete styling, themes and responsive design
 ├── script.js           # Application logic and localStorage handling
 └── README.md           # Project documentation
 ```
@@ -114,113 +451,124 @@ Bookmark-Saver/
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Defines the app layout with title, input fields, add button, and bookmark list. |
-| `style.css` | Provides a clean, modern design with green accents, card layout, and hover effects. |
-| `script.js` | Handles all interactivity: adding/removing bookmarks, URL validation, and localStorage persistence. |
+| `index.html` | Defines the application structure, navigation, dashboard, forms, modals, bookmark areas, and interface elements. |
+| `style.css` | Contains the complete visual system, responsive layouts, light/dark themes, animations, cards, buttons, and component styling. |
+| `script.js` | Handles bookmark management, search, sorting, favorites, categories, tags, editing, deletion, import/export, localStorage, and UI interactions. |
+| `README.md` | Contains project documentation, setup instructions, features, technologies, and usage information. |
 
 ---
 
-## 🎯 Key Functionalities
+## 🌐 Deployment
 
-### Adding a Bookmark
-```javascript
-function addBookmark(name, url) {
-  const li = document.createElement("li");
-  const link = document.createElement("a");
-  link.href = url;
-  link.textContent = name;
-  link.target = "_blank";
+Bookmark Saver is a static web application and can be deployed without a backend.
 
-  const removeButton = document.createElement("button");
-  removeButton.textContent = "Remove";
-  removeButton.addEventListener("click", function () {
-    bookmarkList.removeChild(li);
-    removeBookmarkFromStorage(name, url);
-  });
+### Netlify
 
-  li.appendChild(link);
-  li.appendChild(removeButton);
-  bookmarkList.appendChild(li);
-}
+The project can be deployed directly through Netlify.
+
+**Live Demo:**
+
+[https://bookmark-saver-12.netlify.app/](https://bookmark-saver-12.netlify.app/)
+
+### GitHub Pages
+
+The project can also be hosted using GitHub Pages.
+
+### Other Static Hosting
+
+It can also be deployed to any static hosting provider that supports HTML, CSS, and JavaScript.
+
+---
+
+## 🌍 Browser Compatibility
+
+Bookmark Saver is designed for modern browsers supporting HTML5, CSS3, ES6+ JavaScript, and standard browser APIs.
+
+Recommended browsers:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Safari
+- Chromium-based browsers
+
+Some advanced browser features, such as Clipboard and File APIs, may have limited support in very old browsers.
+
+---
+
+## 🔮 Future Improvements
+
+Possible future improvements include:
+
+- 🖱️ Drag-and-drop bookmark ordering
+- 🎨 Custom collection colors
+- 🖼️ Bookmark website previews
+- 🌐 Automatic metadata extraction
+- 🔍 Advanced filtering
+- 🔗 Broken-link detection
+- ♻️ Duplicate bookmark detection
+- ☑️ Bulk bookmark selection
+- 📦 Bulk import/export
+- 🕐 Recently opened bookmarks
+- 📌 Pinned bookmarks
+- ⌨️ Custom keyboard shortcuts
+- 📱 Progressive Web App support
+- 📴 Offline-first experience
+- 📂 Browser bookmark file import
+
+---
+
+## 🎯 Project Goal
+
+Bookmark Saver originally started as a simple learning project focused on:
+
+```text
+HTML
+CSS
+JavaScript
+DOM Manipulation
+LocalStorage
 ```
 
-### URL Validation
-```javascript
-if (!url.startsWith("http://") && !url.startsWith("https://")) {
-  alert("Please enter a valid URL starting with http:// or https://");
-  return;
-}
-```
+The project has now been redesigned to demonstrate how the same fundamentals can be used to create a polished, responsive, and production-style frontend experience.
 
-### Data Persistence
-```javascript
-function saveBookmark(name, url) {
-  const bookmarks = getBookmarksFromStorage();
-  bookmarks.push({ name, url });
-  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-}
-
-function loadBookmarks() {
-  const bookmarks = getBookmarksFromStorage();
-  bookmarks.forEach((bookmark) => addBookmark(bookmark.name, bookmark.url));
-}
-```
+> **The main goal:** Build a premium-feeling bookmark manager without relying on a frontend framework.
 
 ---
 
-## 🎨 Design Highlights
+## 👨‍💻 Author
 
-- 🌿 **Green Theme** — Fresh green (`#2ecc71`) accent color representing organization and productivity.
-- 📦 **Card Layout** — Clean white card with subtle shadow for a modern look.
-- 🖱️ **Interactive Buttons** — Hover effects on add and remove buttons for better user feedback.
-- 📱 **Responsive** — Flexible width (90% on mobile, max 400px on desktop) for all screen sizes.
-- 🔗 **Link Styling** — Green links with no decoration for a clean appearance.
+### Raza Zaheer
 
----
+Frontend Web Developer
 
-## 🔮 Future Enhancements
-
-- [ ] Edit existing bookmarks
-- [ ] Categorize bookmarks with folders or tags
-- [ ] Search/filter bookmarks
-- [ ] Import/export bookmarks as JSON
-- [ ] Favicon display for each bookmark
-- [ ] Drag and drop to reorder
-- [ ] Dark mode toggle
-- [ ] Cloud sync with user authentication
+<p align="left">
+  <a href="https://github.com/razazaheer12" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-razazaheer12-181717?style=for-the-badge&logo=github" alt="GitHub" />
+  </a>
+  <a href="https://www.linkedin.com/in/raza-zaheer-416745340/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Raza%20Zaheer-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+</p>
 
 ---
 
-## 🤝 Contributing
+## ⭐ Support
 
-Contributions are welcome! If you have suggestions, bug fixes, or new features to add:
+If you like this project, consider giving it a ⭐ on GitHub.
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
+Your support is appreciated!
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is created as a personal learning and portfolio project.
 
----
-
-## 🙏 Acknowledgments
-
-- Built with ❤️ by [Raza Zaheer](https://github.com/razazaheer12)
-- Hosted on [Netlify](https://www.netlify.com/)
+Feel free to explore the source code and use it for learning purposes.
 
 ---
 
 <p align="center">
-  <b>⭐ Star this repo if you found it helpful!</b>
-</p>
-
-<p align="center">
-  <a href="https://bookmark-saver-12.netlify.app/">🌐 Live Demo</a> •
-  <a href="https://github.com/razazaheer12/Bookmark-Saver">💻 GitHub Repo</a>
+  <strong>🔖 Bookmark Saver — Save it. Organize it. Find it.</strong>
 </p>
