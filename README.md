@@ -21,7 +21,8 @@ Built entirely with **HTML5, CSS3, and Vanilla JavaScript**, Bookmark Saver prov
 
 <!-- Add your latest screenshot here -->
 
-<img width="947" height="377" alt="Bookmark Saver Preview" src="https://github.com/user-attachments/assets/abdc755a-d88f-4174-9e2b-98205c31414e" />
+<img width="947" height="433" alt="image" src="https://github.com/user-attachments/assets/b586dc7c-1551-459d-aec3-6252f755bb99" />
+
 
 > **Live URL:** [https://bookmark-saver-12.netlify.app/](https://bookmark-saver-12.netlify.app/)
 
