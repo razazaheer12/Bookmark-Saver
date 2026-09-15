@@ -1,4 +1,4 @@
-# 🔖 Bookmark Saver
+# 🔖 Markly Bookmark Manager
 
 A modern, lightweight, and fully responsive **Bookmark Saver** web application that helps you save, organize, search, and manage your favorite website links effortlessly.
 
