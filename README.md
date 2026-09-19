@@ -15,8 +15,6 @@ Built entirely with **HTML5, CSS3, and Vanilla JavaScript**, Bookmark Saver prov
 
 ---
 
-## 📸 Preview
-
 > 🚀 A redesigned premium bookmark management experience with a modern dashboard, responsive layout, search, favorites, categories, and local data persistence.
 
 <!-- Add your latest screenshot here -->
