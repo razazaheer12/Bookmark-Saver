@@ -13,16 +13,12 @@ Built entirely with **HTML5, CSS3, and Vanilla JavaScript**, Bookmark Saver prov
   </a>
 </p>
 
----
 
 > 🚀 A redesigned premium bookmark management experience with a modern dashboard, responsive layout, search, favorites, categories, and local data persistence.
 
 <!-- Add your latest screenshot here -->
 
 <img width="947" height="433" alt="image" src="https://github.com/user-attachments/assets/b586dc7c-1551-459d-aec3-6252f755bb99" />
-
-
-> **Live URL:** [https://bookmark-saver-12.netlify.app/](https://bookmark-saver-12.netlify.app/)
 
 ---
 
